@@ -1,4 +1,5 @@
 class Cliente:
+
     def __init__(self, documento, nombre, apellido, telefono, correo, direccion):
         self.documento = documento
         self.nombre = nombre
