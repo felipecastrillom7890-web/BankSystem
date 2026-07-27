@@ -1,4 +1,3 @@
-# Mejoras y validaciones del módulo de clientes
 import json
 import os
 
@@ -15,6 +14,10 @@ RUTA = os.path.join(
 
 class ClienteController:
 
+
+    # ==========================
+    # CREAR CLIENTE
+    # ==========================
 
     def registrar_cliente(self):
 
@@ -62,6 +65,10 @@ class ClienteController:
 
 
 
+    # ==========================
+    # LEER CLIENTES
+    # ==========================
+
     def listar_clientes(self):
 
         print("\n=== LISTA DE CLIENTES ===")
@@ -75,7 +82,7 @@ class ClienteController:
             clientes = []
 
 
-        if len(clientes) == 0:
+        if not clientes:
             print("No hay clientes registrados.")
             return
 
@@ -91,6 +98,10 @@ class ClienteController:
             print("Direccion:", cliente["direccion"])
 
 
+
+    # ==========================
+    # ACTUALIZAR CLIENTE
+    # ==========================
 
     def actualizar_cliente(self):
 
@@ -115,11 +126,7 @@ class ClienteController:
 
         for cliente in clientes:
 
-
             if cliente["documento"] == documento_buscar:
-
-
-                print("\nCliente encontrado")
 
 
                 cliente["nombre"] = input(
@@ -150,7 +157,6 @@ class ClienteController:
 
         if encontrado:
 
-
             with open(RUTA, "w", encoding="utf-8") as archivo:
 
                 json.dump(
@@ -171,6 +177,10 @@ class ClienteController:
 
 
 
+    # ==========================
+    # ELIMINAR CLIENTE
+    # ==========================
+
     def eliminar_cliente(self):
 
         print("\n=== ELIMINAR CLIENTE ===")
@@ -189,16 +199,12 @@ class ClienteController:
             clientes = []
 
 
-
-        clientes_nuevos = []
-
+        clientes_filtrados = []
 
         eliminado = False
 
 
-
         for cliente in clientes:
-
 
             if cliente["documento"] == documento_buscar:
 
@@ -206,17 +212,16 @@ class ClienteController:
 
             else:
 
-                clientes_nuevos.append(cliente)
+                clientes_filtrados.append(cliente)
 
 
 
         if eliminado:
 
-
             with open(RUTA, "w", encoding="utf-8") as archivo:
 
                 json.dump(
-                    clientes_nuevos,
+                    clientes_filtrados,
                     archivo,
                     indent=4,
                     ensure_ascii=False
