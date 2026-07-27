@@ -95,6 +95,7 @@ class CuentaController:
             if cuenta["numero_cuenta"] == numero:
                 cuenta["saldo"] += valor
                 encontrada = True
+
                 print("\n✅ Consignación realizada correctamente.")
                 print(f"Nuevo saldo: ${cuenta['saldo']}")
 
@@ -104,3 +105,42 @@ class CuentaController:
 
         with open(RUTA_ARCHIVO, "w", encoding="utf-8") as archivo:
             json.dump(cuentas, archivo, indent=4)
+
+
+    def retirar_dinero(self):
+
+        numero = input("\nNúmero de cuenta: ")
+        valor = float(input("Valor a retirar: "))
+
+        if not os.path.exists(RUTA_ARCHIVO):
+            print("\nNo existen cuentas registradas.")
+            return
+
+        with open(RUTA_ARCHIVO, "r", encoding="utf-8") as archivo:
+            cuentas = json.load(archivo)
+
+        encontrada = False
+
+        for cuenta in cuentas:
+            if cuenta["numero_cuenta"] == numero:
+
+                encontrada = True
+
+                if cuenta["saldo"] >= valor:
+
+                    cuenta["saldo"] -= valor
+
+                    print("\n✅ Retiro realizado correctamente.")
+                    print(f"Saldo actual: ${cuenta['saldo']}")
+
+                    with open(RUTA_ARCHIVO, "w", encoding="utf-8") as archivo:
+                        json.dump(cuentas, archivo, indent=4)
+
+                    return
+
+                else:
+                    print("\n❌ Saldo insuficiente.")
+                    return
+
+        if not encontrada:
+            print("\n❌ Cuenta no encontrada.")
