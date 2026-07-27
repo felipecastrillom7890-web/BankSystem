@@ -24,7 +24,7 @@ class CuentaController:
             with open(RUTA_ARCHIVO, "r", encoding="utf-8") as archivo:
                 try:
                     cuentas = json.load(archivo)
-                except:
+                except json.JSONDecodeError:
                     cuentas = []
         else:
             cuentas = []
@@ -57,3 +57,26 @@ class CuentaController:
             print(f"Tipo: {cuenta['tipo_cuenta']}")
             print(f"Saldo: ${cuenta['saldo']}")
             print("----------------------------------------")
+
+    def buscar_cuenta(self):
+
+        numero = input("\nIngrese el número de cuenta: ")
+
+        if not os.path.exists(RUTA_ARCHIVO):
+            print("\nNo existen cuentas registradas.")
+            return
+
+        with open(RUTA_ARCHIVO, "r", encoding="utf-8") as archivo:
+            cuentas = json.load(archivo)
+
+        for cuenta in cuentas:
+            if cuenta["numero_cuenta"] == numero:
+                print("\n========== CUENTA ENCONTRADA ==========")
+                print(f"Número: {cuenta['numero_cuenta']}")
+                print(f"Documento: {cuenta['documento_cliente']}")
+                print(f"Tipo: {cuenta['tipo_cuenta']}")
+                print(f"Saldo: ${cuenta['saldo']}")
+                print("=======================================")
+                return
+
+        print("\n❌ No se encontró la cuenta.")
