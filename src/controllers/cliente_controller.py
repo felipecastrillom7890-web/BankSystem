@@ -1,3 +1,4 @@
+# Mejoras y validaciones del módulo de clientes
 import json
 import os
 
