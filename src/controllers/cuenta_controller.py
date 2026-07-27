@@ -80,3 +80,27 @@ class CuentaController:
                 return
 
         print("\n❌ No se encontró la cuenta.")
+
+    def consignar_dinero(self):
+
+        numero = input("\nNúmero de cuenta: ")
+        valor = float(input("Valor a consignar: "))
+
+        with open(RUTA_ARCHIVO, "r", encoding="utf-8") as archivo:
+            cuentas = json.load(archivo)
+
+        encontrada = False
+
+        for cuenta in cuentas:
+            if cuenta["numero_cuenta"] == numero:
+                cuenta["saldo"] += valor
+                encontrada = True
+                print("\n✅ Consignación realizada correctamente.")
+                print(f"Nuevo saldo: ${cuenta['saldo']}")
+
+        if not encontrada:
+            print("\n❌ Cuenta no encontrada.")
+            return
+
+        with open(RUTA_ARCHIVO, "w", encoding="utf-8") as archivo:
+            json.dump(cuentas, archivo, indent=4)
