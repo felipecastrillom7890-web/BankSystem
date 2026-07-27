@@ -4,8 +4,8 @@ Sistema de Información Bancario desarrollado aplicando Git Flow.
 
 ## Integrantes
 
-- Tu nombre
-- Nombre de tu compañero
+- Yilber Felipe Lozano Castrillon
+- Karen Gabriela Barrera Cogollos
 
 ## Funcionalidades
 
