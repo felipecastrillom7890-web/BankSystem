@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "numero_cuenta": "1120570644",
+        "documento_cliente": "1120570644",
+        "tipo_cuenta": "AHORROS",
+        "saldo": 0.0
+    }
+]

@@ -106,7 +106,6 @@ class CuentaController:
 
         for cuenta in cuentas:
 
-
             if cuenta["numero_cuenta"] == numero_cuenta:
 
                 print("\n✅ Cuenta encontrada")
@@ -132,8 +131,9 @@ class CuentaController:
             "Número de cuenta: "
         )
 
+
         valor = float(
-            input("Valor a consignar: ")
+            input("Valor a consignar: ").replace(".", "")
         )
 
 
@@ -146,7 +146,6 @@ class CuentaController:
 
 
         for cuenta in cuentas:
-
 
             if cuenta["numero_cuenta"] == numero_cuenta:
 
@@ -183,8 +182,9 @@ class CuentaController:
             "Número de cuenta: "
         )
 
+
         valor = float(
-            input("Valor a retirar: ")
+            input("Valor a retirar: ").replace(".", "")
         )
 
 
